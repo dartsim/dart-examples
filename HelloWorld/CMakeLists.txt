@@ -1,0 +1,6 @@
+set(EXAMPLE_NAME HelloWorld)
+file(GLOB ${EXAMPLE_NAME}_srcs "*.cpp")
+file(GLOB ${EXAMPLE_NAME}_hdrs "*.h")
+add_executable(${EXAMPLE_NAME} ${${EXAMPLE_NAME}_srcs} ${${EXAMPLE_NAME}_hdrs})
+target_link_libraries(${EXAMPLE_NAME} ${DART_LIBRARIES})
+set_target_properties(${EXAMPLE_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
