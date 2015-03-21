@@ -41,6 +41,9 @@
  */
 
 #include <iostream>
+#include <dart/config.h>
+#include <dart/collision/collision.h>
+#include <dart/constraint/constraint.h>
 #include <dart/simulation/simulation.h>
 
 using namespace dart;
@@ -48,6 +51,10 @@ using namespace dart;
 int main(int argc, char* argv[])
 {
   simulation::World* world = new simulation::World();
+#ifdef HAVE_BULLET_COLLISION
+  world->getConstraintSolver()->setCollisionDetector(
+        new collision::BulletCollisionDetector());
+#endif
 
   delete world;
   return 0;
