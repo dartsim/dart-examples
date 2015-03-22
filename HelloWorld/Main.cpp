@@ -41,10 +41,7 @@
  */
 
 #include <iostream>
-#include <dart/config.h>
-#include <dart/collision/collision.h>
-#include <dart/constraint/constraint.h>
-#include <dart/simulation/simulation.h>
+#include <dart/dart-core.h>
 
 using namespace dart;
 
