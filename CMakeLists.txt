@@ -45,6 +45,8 @@ else()
 endif()
 
 include_directories(${DART_INCLUDE_DIRS})
+message(STATUS "DART_INCLUDE_DIRS: ${DART_INCLUDE_DIRS}")
+
 link_directories(${DART_LIBRARY_DIRS})
 
 add_subdirectory(HelloWorld)
