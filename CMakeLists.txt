@@ -34,17 +34,17 @@ else()
   message(SEND_ERROR "Compiler[${CMAKE_CXX_COMPILER_ID}] not supported.")
 endif()
 
-# Find DARTCore
-find_package(DARTCore 4.3.4 QUIET)
-if(DARTCore_FOUND)
-  message(STATUS "Looking for DARTCore - found")
-  set (HAVE_DARTCore TRUE)
+# Find DART
+find_package(DART 4.3.4 QUIET)
+if(DART_FOUND)
+  message(STATUS "Looking for DART - found")
+  set (HAVE_DART TRUE)
 else()
-  message(STATUS "Looking for DARTCore - not found")
-  set(HAVE_DARTCore FALSE)
+  message(STATUS "Looking for DART - not found")
+  set(HAVE_DART FALSE)
 endif()
 
-include_directories(${DARTCore_INCLUDE_DIRS})
-link_directories(${DARTCore_LIBRARY_DIRS})
+include_directories(${DART_INCLUDE_DIRS})
+link_directories(${DART_LIBRARY_DIRS})
 
 add_subdirectory(HelloWorld)
