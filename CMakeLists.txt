@@ -45,6 +45,8 @@ else()
 endif()
 
 include_directories(${DARTCore_INCLUDE_DIRS})
+message(STATUS "DARTCore_INCLUDE_DIRS: ${DARTCore_INCLUDE_DIRS}")
+
 link_directories(${DARTCore_LIBRARY_DIRS})
 
 add_subdirectory(HelloWorld)
