@@ -35,14 +35,11 @@ else()
 endif()
 
 # Find DART
-find_package(DART 4.3.4 QUIET)
-if (DART_FOUND)
-  message (STATUS "Looking for DART - found")
-  set (HAVE_DART TRUE)
+find_package(DART 5.1 QUIET)
+if(DART_FOUND)
+  message(STATUS "Looking for DART - found")
 else()
-  message (STATUS "Looking for DART - not found")
-  BUILD_WARNING ("DART not found, for dart physics engine option, please install libdart4-dev.")
-  set (HAVE_DART FALSE)
+  message(SEND_ERROR "Looking for DART - not found, please install libdart5-dev.")
 endif()
 
 include_directories(${DART_INCLUDE_DIRS})

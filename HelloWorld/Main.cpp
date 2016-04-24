@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, Georgia Tech Research Corporation
+ * Copyright (c) 2015-2016, Georgia Tech Research Corporation
  * All rights reserved.
  *
  * Author(s): Jeongseok Lee <jslee02@gmail.com>
@@ -41,21 +41,16 @@
  */
 
 #include <iostream>
-#include <dart/config.h>
-#include <dart/collision/collision.h>
-#include <dart/constraint/constraint.h>
-#include <dart/simulation/simulation.h>
+#include <dart/dart.h>
 
 using namespace dart;
 
 int main(int argc, char* argv[])
 {
-  simulation::World* world = new simulation::World();
-#ifdef HAVE_BULLET_COLLISION
-  world->getConstraintSolver()->setCollisionDetector(
-        new collision::BulletCollisionDetector());
-#endif
+  auto skel = dynamics::Skeleton::create();
 
-  delete world;
+  std::cout << "Skeleton [" << skel->getName() << "] has ["
+            << skel->getNumBodyNodes() << "] bodies.\n";
+
   return 0;
 }
