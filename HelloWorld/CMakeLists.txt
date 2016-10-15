@@ -1,6 +1,9 @@
-set(EXAMPLE_NAME HelloWorld)
-file(GLOB ${EXAMPLE_NAME}_srcs "*.cpp")
-file(GLOB ${EXAMPLE_NAME}_hdrs "*.h")
-add_executable(${EXAMPLE_NAME} ${${EXAMPLE_NAME}_srcs} ${${EXAMPLE_NAME}_hdrs})
-target_link_libraries(${EXAMPLE_NAME} ${DART_LIBRARIES})
-set_target_properties(${EXAMPLE_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
+cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
+
+project(dart-examples)
+
+find_package(DART 6.1.1 REQUIRED)
+
+add_executable(HelloDART Main.cpp)
+target_include_directories(HelloDART PUBLIC ${DART_INCLUDE_DIRS})
+target_link_libraries(HelloDART PUBLIC ${DART_LIBRARIES})
