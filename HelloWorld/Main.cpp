@@ -41,7 +41,7 @@
  */
 
 #include <iostream>
-#include <dart/dart.h>
+#include <dart/dart.hpp>
 
 using namespace dart;
 
