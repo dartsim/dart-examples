@@ -7,4 +7,5 @@ find_package(DART 6.2 REQUIRED
 )
 
 add_subdirectory(HelloWorld)
+add_subdirectory(tutorials)
 
