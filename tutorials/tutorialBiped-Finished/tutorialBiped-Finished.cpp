@@ -29,11 +29,9 @@
  *   POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "dart/dart.hpp"
-#include "dart/gui/gui.hpp"
-#if HAVE_BULLET_COLLISION
-  #include "dart/collision/bullet/bullet.hpp"
-#endif
+#include <dart/dart.hpp>
+#include <dart/utils/utils.hpp>
+#include <dart/gui/gui.hpp>
 
 const double default_speed_increment = 0.5;
 
@@ -299,7 +297,7 @@ protected:
 SkeletonPtr loadBiped()
 {
   // Create the world with a skeleton
-  WorldPtr world = SkelParser::readWorld(DART_DATA_PATH"skel/biped.skel");
+  WorldPtr world = SkelParser::readWorld("dart://sample/skel/biped.skel");
   assert(world != nullptr);
 
   SkeletonPtr biped = world->getSkeleton("biped");
@@ -337,7 +335,7 @@ void setInitialPose(SkeletonPtr biped)
 void modifyBipedWithSkateboard(SkeletonPtr biped)
 {
   // Load the Skeleton from a file
-  WorldPtr world = SkelParser::readWorld(DART_DATA_PATH"skel/skateboard.skel");
+  WorldPtr world = SkelParser::readWorld("dart://sample/skel/skateboard.skel");
 
   SkeletonPtr skateboard = world->getSkeleton(0);
   
@@ -470,11 +468,12 @@ int main(int argc, char* argv[])
   WorldPtr world = std::make_shared<World>();
   world->setGravity(Eigen::Vector3d(0.0, -9.81, 0.0));
 
-#if HAVE_BULLET_COLLISION
-  world->getConstraintSolver()->setCollisionDetector(
-      dart::collision::BulletCollisionDetector::create());
-#endif
-  
+  if (dart::collision::CollisionDetector::getFactory()->canCreate("bullet"))
+  {
+    world->getConstraintSolver()->setCollisionDetector(
+      dart::collision::CollisionDetector::getFactory()->create("bullet"));
+  }
+
   world->addSkeleton(floor);
   world->addSkeleton(biped);
   
