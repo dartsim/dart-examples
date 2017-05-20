@@ -35,15 +35,9 @@ else()
 endif()
 
 # Find DART
-find_package(DART 5.1 QUIET)
-if(DART_FOUND)
-  message(STATUS "Looking for DART - found")
-else()
-  message(SEND_ERROR "Looking for DART - not found, please install libdart5-dev.")
-endif()
-
-include_directories(${DART_INCLUDE_DIRS})
-link_directories(${DART_LIBRARY_DIRS})
+find_package(DART 6.1 REQUIRED
+  COMPONENTS utils utils-urdf gui gui-osg optimizer-nlopt
+)
 
 add_subdirectory(HelloWorld)
 
