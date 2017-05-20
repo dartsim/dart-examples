@@ -1,29 +1,32 @@
 language: cpp
 
-os:
-  - linux
-  - osx
-
 sudo: required
 
 dist: trusty
 
-compiler:
-  - gcc
-  - clang
-
-env:
-  - BUILD_TYPE=Debug
-  - BUILD_TYPE=Release
-
 matrix:
-  exclude:
-    - os: osx
+  include:
+    - os: linux
       compiler: gcc
+      env: BUILD_TYPE=Debug
+    - os: linux
+      compiler: gcc
+      env: BUILD_TYPE=Release
+    - os: linux
+      compiler: clang
+      env: BUILD_TYPE=Debug
+    - os: linux
+      compiler: clang
+      env: BUILD_TYPE=Release
+    - os: osx
+      compiler: clang
+      env: BUILD_TYPE=Debug
+    - os: osx
+      compiler: clang
+      env: BUILD_TYPE=Release
 
 install:
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then 'ci/install_linux.sh' ; fi
-  - if [ "$TRAVIS_OS_NAME" = "osx"   ]; then 'ci/install_osx.sh'   ; fi
+  - '.ci/install.sh'
 
 script:
   - mkdir build && cd build
