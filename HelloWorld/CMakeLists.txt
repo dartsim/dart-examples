@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.12)
 
 project(HelloWorld)
 
-find_package(DART 6.1.1 REQUIRED COMPONENTS utils-urdf gui)
+find_package(DART 6.1.1 REQUIRED COMPONENTS utils-urdf gui CONFIG)
 
 add_compile_options(-std=c++11)
 
