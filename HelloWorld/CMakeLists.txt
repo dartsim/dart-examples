@@ -1,9 +1,12 @@
-cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
+cmake_minimum_required(VERSION 2.8.12)
 
-project(dart-examples)
+project(HelloWorld)
 
-find_package(DART 6.1.1 REQUIRED)
+find_package(DART 6.1.1 REQUIRED COMPONENTS utils-urdf gui CONFIG)
 
-add_executable(HelloDART Main.cpp)
-target_include_directories(HelloDART PUBLIC ${DART_INCLUDE_DIRS})
-target_link_libraries(HelloDART PUBLIC ${DART_LIBRARIES})
+add_compile_options(-std=c++11)
+
+file(GLOB ${PROJECT_NAME}_srcs "*.cpp")
+file(GLOB ${PROJECT_NAME}_hdrs "*.h")
+add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_srcs} ${${PROJECT_NAME}_hdrs})
+target_link_libraries(${PROJECT_NAME} ${DART_LIBRARIES})
