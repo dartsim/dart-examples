@@ -3,5 +3,5 @@ brew tap homebrew/science
 
 brew update > /dev/null
 
-brew install dartsim5 | grep -v '%$'
+brew install dartsim6 | grep -v '%$'
 
